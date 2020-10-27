@@ -1,0 +1,24 @@
+import 'package:ffi_tool/c.dart';
+import 'dart:io';
+
+///Keep function and variable names consist with PDFium
+void main() {{
+  generateFile(File("lib/src/pdfium_ffi.dart"), library, format: false);
+}}
+
+final library = Library(
+  dynamicLibraryPath:
+      "/Users/zhonghua/programs/pdfium-darwin-v8/lib/libpdfium.dylib",
+  importedUris: {{
+    ImportedUri('structs.dart'),
+  }},
+  elements: <Element>[
+        Func(
+          name: 'FPDF_InitLibraryWithConfig',
+          parameterTypes: ['*FPDF_LIBRARY_CONFIG'],
+          parameterNames: ['config'],
+          returnType: 'void'
+        ),
+      {0}
+  ],
+);
