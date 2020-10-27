@@ -44,10 +44,39 @@ class PdfPage {
         textPage, point.x, point.y, xTolerance, yTolerance);
   }
 
+  int countRects(int startIndex, int count) {
+    return pdfium.lib.FPDFText_CountRects(textPage, startIndex, count);
+  }
+
+  Rectangle getCharBox(int index) {
+    Pointer<Double> left = allocate<Double>();
+    Pointer<Double> right = allocate<Double>();
+    Pointer<Double> bottom = allocate<Double>();
+    Pointer<Double> top = allocate<Double>();
+    pdfium.lib.FPDFText_GetCharBox(textPage, index, left, right, bottom, top);
+    return Rectangle.fromPoints(
+        Point(left.value, top.value), Point(right.value, bottom.value));
+  }
+
+  String getUnicode(int index) {
+    return String.fromCharCode(pdfium.lib.FPDFText_GetUnicode(textPage, index));
+  }
+
+  String getBoundedText(Rectangle rect) {
+    int buflen = pdfium.lib.FPDFText_GetBoundedText(
+        textPage, rect.left, rect.top, rect.right, rect.bottom, nullptr, 0);
+    if (buflen == 0) return "";
+    final buffer = allocate<Uint16>(count: buflen);
+
+    pdfium.lib.FPDFText_GetBoundedText(
+        textPage, rect.left, rect.top, rect.right, rect.bottom, buffer, buflen);
+    return String.fromCharCodes(buffer.cast<Uint16>().asTypedList(buflen));
+  }
+
   ///
   Point pageToDevice(Point point) {
-    Pointer<Int32> dx;
-    Pointer<Int32> dy;
+    Pointer<Int32> dx = allocate<Int32>();
+    Pointer<Int32> dy = allocate<Int32>();
     pdfium.lib.FPDF_PageToDevice(
         page, 0, 0, width.toInt(), height.toInt(), 0, point.x, point.y, dx, dy);
     return Point(dx.value, dy.value);
@@ -55,8 +84,8 @@ class PdfPage {
 
   ///
   Point deviceToPage(Point point) {
-    Pointer<Double> dx;
-    Pointer<Double> dy;
+    Pointer<Double> dx = allocate<Double>();
+    Pointer<Double> dy = allocate<Double>();
     pdfium.lib.FPDF_DeviceToPage(
         page, 0, 0, width.toInt(), height.toInt(), 0, point.x, point.y, dx, dy);
     return Point(dx.value, dy.value);
@@ -82,8 +111,6 @@ class PdfPage {
   ///
   ///
   Pointer<fpdf_bitmap_t__> renderBitmap(width, height) {
-    // final width = (this.width * scale).toInt();
-    // final height = (this.height * scale).toInt();
     final bitmap = pdfium.lib.FPDFBitmap_Create(width, height, 1);
     pdfium.lib.FPDFBitmap_FillRect(bitmap, 0, 0, width, height, 0xFFFFFFFF);
     pdfium.lib.FPDF_RenderPageBitmap(bitmap, page, 0, 0, width, height, 0, 0);

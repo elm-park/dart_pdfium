@@ -5,8 +5,7 @@ import 'ffi_gen/ffi_gen.dart';
 
 export 'ffi_gen/ffi_gen.dart';
 
-const PDFIUM_FILE =
-    '/Users/zhonghua/programs/pdfium-darwin-v8/lib/libpdfium.dylib';
+const PDFIUM_FILE = '/Users/zhonghua/programs/pdfium/lib/libpdfium.dylib';
 const MAX_META_LENGTH = 4096;
 
 class MetaTag {

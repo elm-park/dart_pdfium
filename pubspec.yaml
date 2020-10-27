@@ -24,4 +24,4 @@ ffigen:
   output: 'lib/ffi_gen/ffi_gen.dart'
   headers:
     entry-points:
-      - '/Users/zhonghua/workspace/c-space/pdfium/pdfium/public/*.h'
+      - '/Users/zhonghua/programs/pdfium/include/*.h'

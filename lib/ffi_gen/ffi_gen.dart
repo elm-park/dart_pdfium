@@ -154,6 +154,22 @@ class NativeLibrary {
   _dart_FPDF_DocumentHasValidCrossReferenceTable
       _FPDF_DocumentHasValidCrossReferenceTable;
 
+  int FPDF_GetTrailerEnds(
+    ffi.Pointer<fpdf_document_t__> document,
+    ffi.Pointer<ffi.Uint32> buffer,
+    int length,
+  ) {
+    _FPDF_GetTrailerEnds ??= _dylib.lookupFunction<_c_FPDF_GetTrailerEnds,
+        _dart_FPDF_GetTrailerEnds>('FPDF_GetTrailerEnds');
+    return _FPDF_GetTrailerEnds(
+      document,
+      buffer,
+      length,
+    );
+  }
+
+  _dart_FPDF_GetTrailerEnds _FPDF_GetTrailerEnds;
+
   int FPDF_GetDocPermissions(
     ffi.Pointer<fpdf_document_t__> document,
   ) {
@@ -726,6 +742,57 @@ class NativeLibrary {
 
   _dart_FPDF_GetNamedDest _FPDF_GetNamedDest;
 
+  int FPDF_GetXFAPacketCount(
+    ffi.Pointer<fpdf_document_t__> document,
+  ) {
+    _FPDF_GetXFAPacketCount ??= _dylib.lookupFunction<_c_FPDF_GetXFAPacketCount,
+        _dart_FPDF_GetXFAPacketCount>('FPDF_GetXFAPacketCount');
+    return _FPDF_GetXFAPacketCount(
+      document,
+    );
+  }
+
+  _dart_FPDF_GetXFAPacketCount _FPDF_GetXFAPacketCount;
+
+  int FPDF_GetXFAPacketName(
+    ffi.Pointer<fpdf_document_t__> document,
+    int index,
+    ffi.Pointer<ffi.Void> buffer,
+    int buflen,
+  ) {
+    _FPDF_GetXFAPacketName ??= _dylib.lookupFunction<_c_FPDF_GetXFAPacketName,
+        _dart_FPDF_GetXFAPacketName>('FPDF_GetXFAPacketName');
+    return _FPDF_GetXFAPacketName(
+      document,
+      index,
+      buffer,
+      buflen,
+    );
+  }
+
+  _dart_FPDF_GetXFAPacketName _FPDF_GetXFAPacketName;
+
+  int FPDF_GetXFAPacketContent(
+    ffi.Pointer<fpdf_document_t__> document,
+    int index,
+    ffi.Pointer<ffi.Void> buffer,
+    int buflen,
+    ffi.Pointer<ffi.Uint64> out_buflen,
+  ) {
+    _FPDF_GetXFAPacketContent ??= _dylib.lookupFunction<
+        _c_FPDF_GetXFAPacketContent,
+        _dart_FPDF_GetXFAPacketContent>('FPDF_GetXFAPacketContent');
+    return _FPDF_GetXFAPacketContent(
+      document,
+      index,
+      buffer,
+      buflen,
+      out_buflen,
+    );
+  }
+
+  _dart_FPDF_GetXFAPacketContent _FPDF_GetXFAPacketContent;
+
   /// Experimental API.
   ///
   /// Determine if |document| represents a tagged PDF.
@@ -818,6 +885,61 @@ class NativeLibrary {
   }
 
   _dart_FPDF_StructElement_GetAltText _FPDF_StructElement_GetAltText;
+
+  int FPDF_StructElement_GetID(
+    ffi.Pointer<fpdf_structelement_t__> struct_element,
+    ffi.Pointer<ffi.Void> buffer,
+    int buflen,
+  ) {
+    _FPDF_StructElement_GetID ??= _dylib.lookupFunction<
+        _c_FPDF_StructElement_GetID,
+        _dart_FPDF_StructElement_GetID>('FPDF_StructElement_GetID');
+    return _FPDF_StructElement_GetID(
+      struct_element,
+      buffer,
+      buflen,
+    );
+  }
+
+  _dart_FPDF_StructElement_GetID _FPDF_StructElement_GetID;
+
+  int FPDF_StructElement_GetLang(
+    ffi.Pointer<fpdf_structelement_t__> struct_element,
+    ffi.Pointer<ffi.Void> buffer,
+    int buflen,
+  ) {
+    _FPDF_StructElement_GetLang ??= _dylib.lookupFunction<
+        _c_FPDF_StructElement_GetLang,
+        _dart_FPDF_StructElement_GetLang>('FPDF_StructElement_GetLang');
+    return _FPDF_StructElement_GetLang(
+      struct_element,
+      buffer,
+      buflen,
+    );
+  }
+
+  _dart_FPDF_StructElement_GetLang _FPDF_StructElement_GetLang;
+
+  int FPDF_StructElement_GetStringAttribute(
+    ffi.Pointer<fpdf_structelement_t__> struct_element,
+    ffi.Pointer<ffi.Int8> attr_name,
+    ffi.Pointer<ffi.Void> buffer,
+    int buflen,
+  ) {
+    _FPDF_StructElement_GetStringAttribute ??= _dylib.lookupFunction<
+            _c_FPDF_StructElement_GetStringAttribute,
+            _dart_FPDF_StructElement_GetStringAttribute>(
+        'FPDF_StructElement_GetStringAttribute');
+    return _FPDF_StructElement_GetStringAttribute(
+      struct_element,
+      attr_name,
+      buffer,
+      buflen,
+    );
+  }
+
+  _dart_FPDF_StructElement_GetStringAttribute
+      _FPDF_StructElement_GetStringAttribute;
 
   int FPDF_StructElement_GetMarkedContentID(
     ffi.Pointer<fpdf_structelement_t__> struct_element,
@@ -1730,6 +1852,21 @@ class NativeLibrary {
 
   _dart_FPDFLink_Enumerate _FPDFLink_Enumerate;
 
+  ffi.Pointer<fpdf_annotation_t__> FPDFLink_GetAnnot(
+    ffi.Pointer<fpdf_page_t__> page,
+    ffi.Pointer<fpdf_link_t__> link_annot,
+  ) {
+    _FPDFLink_GetAnnot ??=
+        _dylib.lookupFunction<_c_FPDFLink_GetAnnot, _dart_FPDFLink_GetAnnot>(
+            'FPDFLink_GetAnnot');
+    return _FPDFLink_GetAnnot(
+      page,
+      link_annot,
+    );
+  }
+
+  _dart_FPDFLink_GetAnnot _FPDFLink_GetAnnot;
+
   int FPDFLink_GetAnnotRect(
     ffi.Pointer<fpdf_link_t__> link_annot,
     ffi.Pointer<FS_RECTF> rect,
@@ -1772,6 +1909,20 @@ class NativeLibrary {
   }
 
   _dart_FPDFLink_GetQuadPoints _FPDFLink_GetQuadPoints;
+
+  ffi.Pointer<fpdf_action_t__> FPDF_GetPageAAction(
+    ffi.Pointer<fpdf_page_t__> page,
+    int aa_type,
+  ) {
+    _FPDF_GetPageAAction ??= _dylib.lookupFunction<_c_FPDF_GetPageAAction,
+        _dart_FPDF_GetPageAAction>('FPDF_GetPageAAction');
+    return _FPDF_GetPageAAction(
+      page,
+      aa_type,
+    );
+  }
+
+  _dart_FPDF_GetPageAAction _FPDF_GetPageAAction;
 
   int FPDF_GetFileIdentifier(
     ffi.Pointer<fpdf_document_t__> document,
@@ -2460,6 +2611,23 @@ class NativeLibrary {
   }
 
   _dart_FPDFImageObj_GetBitmap _FPDFImageObj_GetBitmap;
+
+  ffi.Pointer<fpdf_bitmap_t__> FPDFImageObj_GetRenderedBitmap(
+    ffi.Pointer<fpdf_document_t__> document,
+    ffi.Pointer<fpdf_page_t__> page,
+    ffi.Pointer<fpdf_pageobject_t__> image_object,
+  ) {
+    _FPDFImageObj_GetRenderedBitmap ??= _dylib.lookupFunction<
+        _c_FPDFImageObj_GetRenderedBitmap,
+        _dart_FPDFImageObj_GetRenderedBitmap>('FPDFImageObj_GetRenderedBitmap');
+    return _FPDFImageObj_GetRenderedBitmap(
+      document,
+      page,
+      image_object,
+    );
+  }
+
+  _dart_FPDFImageObj_GetRenderedBitmap _FPDFImageObj_GetRenderedBitmap;
 
   int FPDFImageObj_GetImageDataDecoded(
     ffi.Pointer<fpdf_pageobject_t__> image_object,
@@ -4080,6 +4248,21 @@ class NativeLibrary {
   }
 
   _dart_FORM_ReplaceSelection _FORM_ReplaceSelection;
+
+  int FORM_SelectAllText(
+    ffi.Pointer<fpdf_form_handle_t__> hHandle,
+    ffi.Pointer<fpdf_page_t__> page,
+  ) {
+    _FORM_SelectAllText ??=
+        _dylib.lookupFunction<_c_FORM_SelectAllText, _dart_FORM_SelectAllText>(
+            'FORM_SelectAllText');
+    return _FORM_SelectAllText(
+      hHandle,
+      page,
+    );
+  }
+
+  _dart_FORM_SelectAllText _FORM_SelectAllText;
 
   int FORM_CanUndo(
     ffi.Pointer<fpdf_form_handle_t__> hHandle,
@@ -5989,6 +6172,118 @@ class NativeLibrary {
 
   _dart_FPDFDoc_GetPageMode _FPDFDoc_GetPageMode;
 
+  int FPDF_GetSignatureCount(
+    ffi.Pointer<fpdf_document_t__> document,
+  ) {
+    _FPDF_GetSignatureCount ??= _dylib.lookupFunction<_c_FPDF_GetSignatureCount,
+        _dart_FPDF_GetSignatureCount>('FPDF_GetSignatureCount');
+    return _FPDF_GetSignatureCount(
+      document,
+    );
+  }
+
+  _dart_FPDF_GetSignatureCount _FPDF_GetSignatureCount;
+
+  ffi.Pointer<fpdf_signature_t__> FPDF_GetSignatureObject(
+    ffi.Pointer<fpdf_document_t__> document,
+    int index,
+  ) {
+    _FPDF_GetSignatureObject ??= _dylib.lookupFunction<
+        _c_FPDF_GetSignatureObject,
+        _dart_FPDF_GetSignatureObject>('FPDF_GetSignatureObject');
+    return _FPDF_GetSignatureObject(
+      document,
+      index,
+    );
+  }
+
+  _dart_FPDF_GetSignatureObject _FPDF_GetSignatureObject;
+
+  int FPDFSignatureObj_GetContents(
+    ffi.Pointer<fpdf_signature_t__> signature,
+    ffi.Pointer<ffi.Void> buffer,
+    int length,
+  ) {
+    _FPDFSignatureObj_GetContents ??= _dylib.lookupFunction<
+        _c_FPDFSignatureObj_GetContents,
+        _dart_FPDFSignatureObj_GetContents>('FPDFSignatureObj_GetContents');
+    return _FPDFSignatureObj_GetContents(
+      signature,
+      buffer,
+      length,
+    );
+  }
+
+  _dart_FPDFSignatureObj_GetContents _FPDFSignatureObj_GetContents;
+
+  int FPDFSignatureObj_GetByteRange(
+    ffi.Pointer<fpdf_signature_t__> signature,
+    ffi.Pointer<ffi.Int32> buffer,
+    int length,
+  ) {
+    _FPDFSignatureObj_GetByteRange ??= _dylib.lookupFunction<
+        _c_FPDFSignatureObj_GetByteRange,
+        _dart_FPDFSignatureObj_GetByteRange>('FPDFSignatureObj_GetByteRange');
+    return _FPDFSignatureObj_GetByteRange(
+      signature,
+      buffer,
+      length,
+    );
+  }
+
+  _dart_FPDFSignatureObj_GetByteRange _FPDFSignatureObj_GetByteRange;
+
+  int FPDFSignatureObj_GetSubFilter(
+    ffi.Pointer<fpdf_signature_t__> signature,
+    ffi.Pointer<ffi.Int8> buffer,
+    int length,
+  ) {
+    _FPDFSignatureObj_GetSubFilter ??= _dylib.lookupFunction<
+        _c_FPDFSignatureObj_GetSubFilter,
+        _dart_FPDFSignatureObj_GetSubFilter>('FPDFSignatureObj_GetSubFilter');
+    return _FPDFSignatureObj_GetSubFilter(
+      signature,
+      buffer,
+      length,
+    );
+  }
+
+  _dart_FPDFSignatureObj_GetSubFilter _FPDFSignatureObj_GetSubFilter;
+
+  int FPDFSignatureObj_GetReason(
+    ffi.Pointer<fpdf_signature_t__> signature,
+    ffi.Pointer<ffi.Void> buffer,
+    int length,
+  ) {
+    _FPDFSignatureObj_GetReason ??= _dylib.lookupFunction<
+        _c_FPDFSignatureObj_GetReason,
+        _dart_FPDFSignatureObj_GetReason>('FPDFSignatureObj_GetReason');
+    return _FPDFSignatureObj_GetReason(
+      signature,
+      buffer,
+      length,
+    );
+  }
+
+  _dart_FPDFSignatureObj_GetReason _FPDFSignatureObj_GetReason;
+
+  int FPDFSignatureObj_GetTime(
+    ffi.Pointer<fpdf_signature_t__> signature,
+    ffi.Pointer<ffi.Int8> buffer,
+    int length,
+  ) {
+    _FPDFSignatureObj_GetTime ??= _dylib.lookupFunction<
+        _c_FPDFSignatureObj_GetTime,
+        _dart_FPDFSignatureObj_GetTime>('FPDFSignatureObj_GetTime');
+    return _FPDFSignatureObj_GetTime(
+      signature,
+      buffer,
+      length,
+    );
+  }
+
+  _dart_FPDFSignatureObj_GetTime _FPDFSignatureObj_GetTime;
+
   int FPDF_RenderPageBitmapWithColorScheme_Start(
     ffi.Pointer<fpdf_bitmap_t__> bitmap,
     ffi.Pointer<fpdf_page_t__> page,
@@ -6314,6 +6609,8 @@ class fpdf_pagerange_t__ extends ffi.Struct {}
 class fpdf_pathsegment_t extends ffi.Struct {}
 
 class fpdf_schhandle_t__ extends ffi.Struct {}
+
+class fpdf_signature_t__ extends ffi.Struct {}
 
 class fpdf_structelement_t__ extends ffi.Struct {}
 
@@ -7109,6 +7406,8 @@ const int PDFACTION_REMOTEGOTO = 2;
 const int PDFACTION_URI = 3;
 
 const int PDFACTION_LAUNCH = 4;
+
+const int PDFACTION_EMBEDDEDGOTO = 5;
 
 const int PDFDEST_VIEW_UNKNOWN_MODE = 0;
 
@@ -7972,6 +8271,18 @@ typedef _dart_FPDF_DocumentHasValidCrossReferenceTable = int Function(
   ffi.Pointer<fpdf_document_t__> document,
 );
 
+typedef _c_FPDF_GetTrailerEnds = ffi.Uint64 Function(
+  ffi.Pointer<fpdf_document_t__> document,
+  ffi.Pointer<ffi.Uint32> buffer,
+  ffi.Uint64 length,
+);
+
+typedef _dart_FPDF_GetTrailerEnds = int Function(
+  ffi.Pointer<fpdf_document_t__> document,
+  ffi.Pointer<ffi.Uint32> buffer,
+  int length,
+);
+
 typedef _c_FPDF_GetDocPermissions = ffi.Uint64 Function(
   ffi.Pointer<fpdf_document_t__> document,
 );
@@ -8372,6 +8683,44 @@ typedef _dart_FPDF_GetNamedDest = ffi.Pointer<fpdf_dest_t__> Function(
   ffi.Pointer<ffi.Int64> buflen,
 );
 
+typedef _c_FPDF_GetXFAPacketCount = ffi.Int32 Function(
+  ffi.Pointer<fpdf_document_t__> document,
+);
+
+typedef _dart_FPDF_GetXFAPacketCount = int Function(
+  ffi.Pointer<fpdf_document_t__> document,
+);
+
+typedef _c_FPDF_GetXFAPacketName = ffi.Uint64 Function(
+  ffi.Pointer<fpdf_document_t__> document,
+  ffi.Int32 index,
+  ffi.Pointer<ffi.Void> buffer,
+  ffi.Uint64 buflen,
+);
+
+typedef _dart_FPDF_GetXFAPacketName = int Function(
+  ffi.Pointer<fpdf_document_t__> document,
+  int index,
+  ffi.Pointer<ffi.Void> buffer,
+  int buflen,
+);
+
+typedef _c_FPDF_GetXFAPacketContent = ffi.Int32 Function(
+  ffi.Pointer<fpdf_document_t__> document,
+  ffi.Int32 index,
+  ffi.Pointer<ffi.Void> buffer,
+  ffi.Uint64 buflen,
+  ffi.Pointer<ffi.Uint64> out_buflen,
+);
+
+typedef _dart_FPDF_GetXFAPacketContent = int Function(
+  ffi.Pointer<fpdf_document_t__> document,
+  int index,
+  ffi.Pointer<ffi.Void> buffer,
+  int buflen,
+  ffi.Pointer<ffi.Uint64> out_buflen,
+);
+
 typedef _c_FPDFCatalog_IsTagged = ffi.Int32 Function(
   ffi.Pointer<fpdf_document_t__> document,
 );
@@ -8426,6 +8775,44 @@ typedef _c_FPDF_StructElement_GetAltText = ffi.Uint64 Function(
 
 typedef _dart_FPDF_StructElement_GetAltText = int Function(
   ffi.Pointer<fpdf_structelement_t__> struct_element,
+  ffi.Pointer<ffi.Void> buffer,
+  int buflen,
+);
+
+typedef _c_FPDF_StructElement_GetID = ffi.Uint64 Function(
+  ffi.Pointer<fpdf_structelement_t__> struct_element,
+  ffi.Pointer<ffi.Void> buffer,
+  ffi.Uint64 buflen,
+);
+
+typedef _dart_FPDF_StructElement_GetID = int Function(
+  ffi.Pointer<fpdf_structelement_t__> struct_element,
+  ffi.Pointer<ffi.Void> buffer,
+  int buflen,
+);
+
+typedef _c_FPDF_StructElement_GetLang = ffi.Uint64 Function(
+  ffi.Pointer<fpdf_structelement_t__> struct_element,
+  ffi.Pointer<ffi.Void> buffer,
+  ffi.Uint64 buflen,
+);
+
+typedef _dart_FPDF_StructElement_GetLang = int Function(
+  ffi.Pointer<fpdf_structelement_t__> struct_element,
+  ffi.Pointer<ffi.Void> buffer,
+  int buflen,
+);
+
+typedef _c_FPDF_StructElement_GetStringAttribute = ffi.Uint64 Function(
+  ffi.Pointer<fpdf_structelement_t__> struct_element,
+  ffi.Pointer<ffi.Int8> attr_name,
+  ffi.Pointer<ffi.Void> buffer,
+  ffi.Uint64 buflen,
+);
+
+typedef _dart_FPDF_StructElement_GetStringAttribute = int Function(
+  ffi.Pointer<fpdf_structelement_t__> struct_element,
+  ffi.Pointer<ffi.Int8> attr_name,
   ffi.Pointer<ffi.Void> buffer,
   int buflen,
 );
@@ -9083,6 +9470,16 @@ typedef _dart_FPDFLink_Enumerate = int Function(
   ffi.Pointer<ffi.Pointer<fpdf_link_t__>> link_annot,
 );
 
+typedef _c_FPDFLink_GetAnnot = ffi.Pointer<fpdf_annotation_t__> Function(
+  ffi.Pointer<fpdf_page_t__> page,
+  ffi.Pointer<fpdf_link_t__> link_annot,
+);
+
+typedef _dart_FPDFLink_GetAnnot = ffi.Pointer<fpdf_annotation_t__> Function(
+  ffi.Pointer<fpdf_page_t__> page,
+  ffi.Pointer<fpdf_link_t__> link_annot,
+);
+
 typedef _c_FPDFLink_GetAnnotRect = ffi.Int32 Function(
   ffi.Pointer<fpdf_link_t__> link_annot,
   ffi.Pointer<FS_RECTF> rect,
@@ -9111,6 +9508,16 @@ typedef _dart_FPDFLink_GetQuadPoints = int Function(
   ffi.Pointer<fpdf_link_t__> link_annot,
   int quad_index,
   ffi.Pointer<FS_QUADPOINTSF> quad_points,
+);
+
+typedef _c_FPDF_GetPageAAction = ffi.Pointer<fpdf_action_t__> Function(
+  ffi.Pointer<fpdf_page_t__> page,
+  ffi.Int32 aa_type,
+);
+
+typedef _dart_FPDF_GetPageAAction = ffi.Pointer<fpdf_action_t__> Function(
+  ffi.Pointer<fpdf_page_t__> page,
+  int aa_type,
 );
 
 typedef _c_FPDF_GetFileIdentifier = ffi.Uint64 Function(
@@ -9610,6 +10017,20 @@ typedef _c_FPDFImageObj_GetBitmap = ffi.Pointer<fpdf_bitmap_t__> Function(
 );
 
 typedef _dart_FPDFImageObj_GetBitmap = ffi.Pointer<fpdf_bitmap_t__> Function(
+  ffi.Pointer<fpdf_pageobject_t__> image_object,
+);
+
+typedef _c_FPDFImageObj_GetRenderedBitmap = ffi.Pointer<fpdf_bitmap_t__>
+    Function(
+  ffi.Pointer<fpdf_document_t__> document,
+  ffi.Pointer<fpdf_page_t__> page,
+  ffi.Pointer<fpdf_pageobject_t__> image_object,
+);
+
+typedef _dart_FPDFImageObj_GetRenderedBitmap = ffi.Pointer<fpdf_bitmap_t__>
+    Function(
+  ffi.Pointer<fpdf_document_t__> document,
+  ffi.Pointer<fpdf_page_t__> page,
   ffi.Pointer<fpdf_pageobject_t__> image_object,
 );
 
@@ -10701,6 +11122,16 @@ typedef _dart_FORM_ReplaceSelection = void Function(
   ffi.Pointer<fpdf_form_handle_t__> hHandle,
   ffi.Pointer<fpdf_page_t__> page,
   ffi.Pointer<ffi.Uint16> wsText,
+);
+
+typedef _c_FORM_SelectAllText = ffi.Int32 Function(
+  ffi.Pointer<fpdf_form_handle_t__> hHandle,
+  ffi.Pointer<fpdf_page_t__> page,
+);
+
+typedef _dart_FORM_SelectAllText = int Function(
+  ffi.Pointer<fpdf_form_handle_t__> hHandle,
+  ffi.Pointer<fpdf_page_t__> page,
 );
 
 typedef _c_FORM_CanUndo = ffi.Int32 Function(
@@ -12041,6 +12472,85 @@ typedef _c_FPDFDoc_GetPageMode = ffi.Int32 Function(
 
 typedef _dart_FPDFDoc_GetPageMode = int Function(
   ffi.Pointer<fpdf_document_t__> document,
+);
+
+typedef _c_FPDF_GetSignatureCount = ffi.Int32 Function(
+  ffi.Pointer<fpdf_document_t__> document,
+);
+
+typedef _dart_FPDF_GetSignatureCount = int Function(
+  ffi.Pointer<fpdf_document_t__> document,
+);
+
+typedef _c_FPDF_GetSignatureObject = ffi.Pointer<fpdf_signature_t__> Function(
+  ffi.Pointer<fpdf_document_t__> document,
+  ffi.Int32 index,
+);
+
+typedef _dart_FPDF_GetSignatureObject = ffi.Pointer<fpdf_signature_t__>
+    Function(
+  ffi.Pointer<fpdf_document_t__> document,
+  int index,
+);
+
+typedef _c_FPDFSignatureObj_GetContents = ffi.Uint64 Function(
+  ffi.Pointer<fpdf_signature_t__> signature,
+  ffi.Pointer<ffi.Void> buffer,
+  ffi.Uint64 length,
+);
+
+typedef _dart_FPDFSignatureObj_GetContents = int Function(
+  ffi.Pointer<fpdf_signature_t__> signature,
+  ffi.Pointer<ffi.Void> buffer,
+  int length,
+);
+
+typedef _c_FPDFSignatureObj_GetByteRange = ffi.Uint64 Function(
+  ffi.Pointer<fpdf_signature_t__> signature,
+  ffi.Pointer<ffi.Int32> buffer,
+  ffi.Uint64 length,
+);
+
+typedef _dart_FPDFSignatureObj_GetByteRange = int Function(
+  ffi.Pointer<fpdf_signature_t__> signature,
+  ffi.Pointer<ffi.Int32> buffer,
+  int length,
+);
+
+typedef _c_FPDFSignatureObj_GetSubFilter = ffi.Uint64 Function(
+  ffi.Pointer<fpdf_signature_t__> signature,
+  ffi.Pointer<ffi.Int8> buffer,
+  ffi.Uint64 length,
+);
+
+typedef _dart_FPDFSignatureObj_GetSubFilter = int Function(
+  ffi.Pointer<fpdf_signature_t__> signature,
+  ffi.Pointer<ffi.Int8> buffer,
+  int length,
+);
+
+typedef _c_FPDFSignatureObj_GetReason = ffi.Uint64 Function(
+  ffi.Pointer<fpdf_signature_t__> signature,
+  ffi.Pointer<ffi.Void> buffer,
+  ffi.Uint64 length,
+);
+
+typedef _dart_FPDFSignatureObj_GetReason = int Function(
+  ffi.Pointer<fpdf_signature_t__> signature,
+  ffi.Pointer<ffi.Void> buffer,
+  int length,
+);
+
+typedef _c_FPDFSignatureObj_GetTime = ffi.Uint64 Function(
+  ffi.Pointer<fpdf_signature_t__> signature,
+  ffi.Pointer<ffi.Int8> buffer,
+  ffi.Uint64 length,
+);
+
+typedef _dart_FPDFSignatureObj_GetTime = int Function(
+  ffi.Pointer<fpdf_signature_t__> signature,
+  ffi.Pointer<ffi.Int8> buffer,
+  int length,
 );
 
 typedef _c_FPDF_RenderPageBitmapWithColorScheme_Start = ffi.Int32 Function(
